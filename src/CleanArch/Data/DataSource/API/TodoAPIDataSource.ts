@@ -36,7 +36,7 @@ export default class TodoAPIDataSourceImpl implements TodoDataSource {
     return item.is_completed;
   }
 
-  // async removeTodo(id: string) {
-  //   return this.db.removeById(id);
-  // }
+  async removeTodo(id: string) {
+    return this.db.removeById(id);
+  }
 }

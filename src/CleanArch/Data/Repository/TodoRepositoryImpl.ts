@@ -20,7 +20,7 @@ export class TodoRepositoryImpl implements TodoRepository {
     return this.dataSource.toggleTodoCheck(id);
   }
 
-  // async removeTodo(id: string) {
-  //   return this.dataSource.removeTodo(id);
-  // }
+  async removeTodo(id: string) {
+    return this.dataSource.removeTodo(id);
+  }
 }

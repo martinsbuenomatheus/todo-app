@@ -15,7 +15,7 @@ export default function TodoListView() {
     createTodo,
     onChangeValue,
     toggleRead,
-    //removeTodo,
+    removeTodo,
     value,
     todos,
   } = useViewModel();
@@ -43,9 +43,7 @@ export default function TodoListView() {
               />
             </ListItemIcon>
             <ListItemText primary={todo.title} />
-            <button 
-            //onClick={() => removeTodo(todo.id)}
-            >
+            <button onClick={() => removeTodo(todo.id)} >
               remove
             </button>
           </ListItem>

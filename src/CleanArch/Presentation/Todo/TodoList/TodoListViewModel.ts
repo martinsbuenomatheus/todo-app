@@ -5,7 +5,7 @@ import { Todo } from "../../../Domain/Model/Todo";
 import { GetTodos } from "../../../Domain/UseCase/Todo/GetTodos";
 import { CreateTodo } from "../../../Domain/UseCase/Todo/CreateTodo";
 import { ToggleCheckTodo } from "../../../Domain/UseCase/Todo/ToggleCheckTodo";
-//import { RemoveTodo } from "../../../Domain/UseCase/Todo/RemoveTodo";
+import { RemoveTodo } from "../../../Domain/UseCase/Todo/RemoveTodo";
 import { toast } from "react-toastify";
 
 export default function TodoListViewModel() {
@@ -18,7 +18,7 @@ export default function TodoListViewModel() {
   const getTodosUseCase = new GetTodos(todosRepositoryImpl);
   const createTodosUseCase = new CreateTodo(todosRepositoryImpl);
   const toggleCheckTodoUseCase = new ToggleCheckTodo(todosRepositoryImpl);
-  //const removeTodosUseCase = new RemoveTodo(todosRepositoryImpl);
+  const removeTodosUseCase = new RemoveTodo(todosRepositoryImpl);
 
   function _resetValue() {
     setValue("");
@@ -55,14 +55,14 @@ export default function TodoListViewModel() {
     ]);
   }
 
-  // async function removeTodo(id: string) {
-  //   const isRemoved = await removeTodosUseCase.invoke(id);
-  //   if (isRemoved) {
-  //     setTodos((prev) => {
-  //       return [...prev.filter((i) => i.id !== id)];
-  //     });
-  //   }
-  // }
+  async function removeTodo(id: string) {
+    const isRemoved = await removeTodosUseCase.invoke(id);
+    if (isRemoved) {
+      setTodos((prev) => {
+        return [...prev.filter((i) => i.id !== id)];
+      });
+    }
+  }
 
   function onChangeValue(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -74,7 +74,7 @@ export default function TodoListViewModel() {
     onChangeValue,
     createTodo,
     toggleRead,
-    //removeTodo,
+    removeTodo,
     todos,
     value,
   };
