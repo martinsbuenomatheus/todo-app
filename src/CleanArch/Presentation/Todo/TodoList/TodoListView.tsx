@@ -12,7 +12,7 @@ import {
 export default function TodoListView() {
   const {
     getTodos,
-    //createTodo,
+    createTodo,
     onChangeValue,
     //toggleRead,
     //removeTodo,
@@ -32,9 +32,7 @@ export default function TodoListView() {
         type="text"
         value={value}
       />
-      <button 
-      //onClick={createTodo}
-      >add</button>
+      <button onClick={createTodo}>add</button>
       {todos.map((todo, i) => {
         return (
           <ListItem key={i}>

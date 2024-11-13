@@ -12,9 +12,9 @@ export class TodoRepositoryImpl implements TodoRepository {
     return this.dataSource.getTodos();
   }
 
-  // async createTodo(value: string) {
-  //   return this.dataSource.createTodo(value);
-  // }
+  async createTodo(value: string) {
+    return this.dataSource.createTodo(value);
+  }
 
   // async markAsRead(id: string) {
   //   return this.dataSource.toggleTodoCheck(id);

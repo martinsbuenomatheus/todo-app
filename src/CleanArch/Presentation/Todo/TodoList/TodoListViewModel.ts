@@ -3,7 +3,7 @@ import TodoAPIDataSourceImpl from "../../../Data/DataSource/API/TodoAPIDataSourc
 import { TodoRepositoryImpl } from "../../../Data/Repository/TodoRepositoryImpl";
 import { Todo } from "../../../Domain/Model/Todo";
 import { GetTodos } from "../../../Domain/UseCase/Todo/GetTodos";
-//import { CreateTodo } from "../../../Domain/UseCase/Todo/CreateTodo";
+import { CreateTodo } from "../../../Domain/UseCase/Todo/CreateTodo";
 //import { ToggleCheckTodo } from "../../../Domain/UseCase/Todo/ToggleCheckTodo";
 //import { RemoveTodo } from "../../../Domain/UseCase/Todo/RemoveTodo";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ export default function TodoListViewModel() {
   const todosRepositoryImpl = new TodoRepositoryImpl(todosDataSourceImpl);
 
   const getTodosUseCase = new GetTodos(todosRepositoryImpl);
-  //const createTodosUseCase = new CreateTodo(todosRepositoryImpl);
+  const createTodosUseCase = new CreateTodo(todosRepositoryImpl);
   //const toggleCheckTodoUseCase = new ToggleCheckTodo(todosRepositoryImpl);
   //const removeTodosUseCase = new RemoveTodo(todosRepositoryImpl);
 
@@ -28,18 +28,18 @@ export default function TodoListViewModel() {
     setTodos(await getTodosUseCase.invoke());
   }
 
-  // async function createTodo() {
-  //   try {
-  //     const createdTodo = await createTodosUseCase.invoke(value);
-  //     setTodos((prev) => [...prev, createdTodo]);
-  //     _resetValue();
-  //   } catch (e) {
-  //     _resetValue();
-  //     if (e instanceof Error) {
-  //       toast(e.message);
-  //     }
-  //   }
-  // }
+  async function createTodo() {
+    try {
+      const createdTodo = await createTodosUseCase.invoke(value);
+      setTodos((prev) => [...prev, createdTodo]);
+      _resetValue();
+    } catch (e) {
+      _resetValue();
+      if (e instanceof Error) {
+        toast(e.message);
+      }
+    }
+  }
 
   // async function toggleRead(id: string) {
   //   const createdTodo = await toggleCheckTodoUseCase.invoke(id);
@@ -72,7 +72,7 @@ export default function TodoListViewModel() {
   return {
     getTodos,
     onChangeValue,
-    //createTodo,
+    createTodo,
     //toggleRead,
     //removeTodo,
     todos,

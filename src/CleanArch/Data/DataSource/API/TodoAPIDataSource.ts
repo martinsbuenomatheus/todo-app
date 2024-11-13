@@ -16,20 +16,20 @@ export default class TodoAPIDataSourceImpl implements TodoDataSource {
     }));
   }  
   
-  // async createTodo(value: string) {
-  //   const res: Todo = {
-  //     id: new Date().getSeconds().toString(),
-  //     isComplete: false,
-  //     title: value,
-  //   };
+  async createTodo(value: string) {
+    const res: Todo = {
+      id: new Date().getSeconds().toString(),
+      isComplete: false,
+      title: value,
+    };
 
-  //   this.db.create({
-  //     id: res.id,
-  //     is_completed: res.isComplete,
-  //     title: res.title,
-  //   });
-  //   return res;
-  // }
+    this.db.create({
+      id: res.id,
+      is_completed: res.isComplete,
+      title: res.title,
+    });
+    return res;
+  }
 
   // async toggleTodoCheck(id: string) {
   //   const item = this.db.updateByField(id, "is_completed", "toggle");
