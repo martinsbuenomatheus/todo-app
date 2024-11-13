@@ -4,7 +4,7 @@ import { TodoRepositoryImpl } from "../../../Data/Repository/TodoRepositoryImpl"
 import { Todo } from "../../../Domain/Model/Todo";
 import { GetTodos } from "../../../Domain/UseCase/Todo/GetTodos";
 import { CreateTodo } from "../../../Domain/UseCase/Todo/CreateTodo";
-//import { ToggleCheckTodo } from "../../../Domain/UseCase/Todo/ToggleCheckTodo";
+import { ToggleCheckTodo } from "../../../Domain/UseCase/Todo/ToggleCheckTodo";
 //import { RemoveTodo } from "../../../Domain/UseCase/Todo/RemoveTodo";
 import { toast } from "react-toastify";
 
@@ -17,7 +17,7 @@ export default function TodoListViewModel() {
 
   const getTodosUseCase = new GetTodos(todosRepositoryImpl);
   const createTodosUseCase = new CreateTodo(todosRepositoryImpl);
-  //const toggleCheckTodoUseCase = new ToggleCheckTodo(todosRepositoryImpl);
+  const toggleCheckTodoUseCase = new ToggleCheckTodo(todosRepositoryImpl);
   //const removeTodosUseCase = new RemoveTodo(todosRepositoryImpl);
 
   function _resetValue() {
@@ -41,19 +41,19 @@ export default function TodoListViewModel() {
     }
   }
 
-  // async function toggleRead(id: string) {
-  //   const createdTodo = await toggleCheckTodoUseCase.invoke(id);
-  //   setTodos((prev) => [
-  //     ...prev.map((i) => {
-  //       const isToggled = i.id === id;
+  async function toggleRead(id: string) {
+    const createdTodo = await toggleCheckTodoUseCase.invoke(id);
+    setTodos((prev) => [
+      ...prev.map((i) => {
+        const isToggled = i.id === id;
 
-  //       return {
-  //         ...i,
-  //         isComplete: isToggled ? createdTodo : i.isComplete,
-  //       };
-  //     }),
-  //   ]);
-  // }
+        return {
+          ...i,
+          isComplete: isToggled ? createdTodo : i.isComplete,
+        };
+      }),
+    ]);
+  }
 
   // async function removeTodo(id: string) {
   //   const isRemoved = await removeTodosUseCase.invoke(id);
@@ -73,7 +73,7 @@ export default function TodoListViewModel() {
     getTodos,
     onChangeValue,
     createTodo,
-    //toggleRead,
+    toggleRead,
     //removeTodo,
     todos,
     value,

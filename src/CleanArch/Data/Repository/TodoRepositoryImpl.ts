@@ -16,9 +16,9 @@ export class TodoRepositoryImpl implements TodoRepository {
     return this.dataSource.createTodo(value);
   }
 
-  // async markAsRead(id: string) {
-  //   return this.dataSource.toggleTodoCheck(id);
-  // }
+  async markAsRead(id: string) {
+    return this.dataSource.toggleTodoCheck(id);
+  }
 
   // async removeTodo(id: string) {
   //   return this.dataSource.removeTodo(id);

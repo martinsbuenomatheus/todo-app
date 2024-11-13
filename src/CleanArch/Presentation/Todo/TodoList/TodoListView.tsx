@@ -14,7 +14,7 @@ export default function TodoListView() {
     getTodos,
     createTodo,
     onChangeValue,
-    //toggleRead,
+    toggleRead,
     //removeTodo,
     value,
     todos,
@@ -38,8 +38,8 @@ export default function TodoListView() {
           <ListItem key={i}>
             <ListItemIcon>
               <Checkbox
-                checked={todo.isComplete}
-                //onChange={() => toggleRead(todo.id)}
+                checked={todo.isComplete} 
+                onChange={() => toggleRead(todo.id)} 
               />
             </ListItemIcon>
             <ListItemText primary={todo.title} />
