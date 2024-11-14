@@ -1,5 +1,5 @@
 export interface TodoAPIEntity {
-    id: string;
+    id: number;
     title: string;
     is_completed: boolean;
   }

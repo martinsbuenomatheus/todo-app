@@ -16,11 +16,11 @@ export class TodoRepositoryImpl implements TodoRepository {
     return this.dataSource.createTodo(value);
   }
 
-  async markAsRead(id: string) {
+  async markAsRead(id: number) {
     return this.dataSource.toggleTodoCheck(id);
   }
 
-  async removeTodo(id: string) {
+  async removeTodo(id: number) {
     return this.dataSource.removeTodo(id);
   }
 }

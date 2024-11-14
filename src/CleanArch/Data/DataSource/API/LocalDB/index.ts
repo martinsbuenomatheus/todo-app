@@ -14,16 +14,16 @@ function db<T>(table: string) {
           return allLocal() as T[];
         },
   
-        getById(columnId: string) {
+        getById(columnId: number) {
           const item = (this.getAll() as any[]).find(
-            (i: { id: string }) => i.id === columnId
+            (i: { id: number }) => i.id === columnId
           )!;
           return item as T;
         },
   
-        removeById(columnId: string) {
+        removeById(columnId: number) {
           const idx = (this.getAll() as any[]).findIndex(
-            (i: { id: string }) => i.id === columnId
+            (i: { id: number }) => i.id === columnId
           )!;
   
           if (idx > -1) {
@@ -42,9 +42,9 @@ function db<T>(table: string) {
           setTable(stringified);
         },
   
-        updateByField(columnId: string, field: any, newValue: any) {
+        updateByField(columnId: number, field: any, newValue: any) {
           const item = (this.getAll() as any[]).find(
-            (i: { id: string }) => i.id === columnId
+            (i: { id: number }) => i.id === columnId
           ) as T;
           let newItem = { ...item, [field]: newValue } as T;
   
@@ -53,7 +53,7 @@ function db<T>(table: string) {
           }
   
           const stringified = JSON.stringify([
-            ...(allLocal() as { id: string }[]).map((i) => {
+            ...(allLocal() as { id: number }[]).map((i) => {
               const isChanged = i.id === columnId;
               return {
                 ...i,
@@ -71,14 +71,14 @@ function db<T>(table: string) {
       getAll() {
         return [] as T[];
       },
-      getById(columnId: string) {
+      getById(columnId: number) {
         return {} as T;
       },
-      removeById(columnId: string) {
+      removeById(columnId: number) {
         return false;
       },
       create<T>(params: T) {},
-      updateByField(columnId: string, field: any, newValue: any) {
+      updateByField(columnId: number, field: any, newValue: any) {
         return {} as T;
       },
     };

@@ -1,7 +1,7 @@
 import { TodoRepository } from "../../Repository/TodoRepository";
 
 export interface RemoveTodosUseCase {
-  invoke: (id: string) => Promise<boolean>;
+  invoke: (id: number) => Promise<boolean>;
 }
 
 export class RemoveTodo implements RemoveTodosUseCase {
@@ -10,7 +10,7 @@ export class RemoveTodo implements RemoveTodosUseCase {
     this.todoRepo = _todoRepo;
   }
 
-  async invoke(id: string) {
+  async invoke(id: number) {
     return this.todoRepo.removeTodo(id);
   }
 }

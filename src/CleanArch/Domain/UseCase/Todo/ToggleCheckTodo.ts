@@ -1,7 +1,7 @@
 import { TodoRepository } from "../../Repository/TodoRepository";
 
 export interface ToggleCheckTodoUseCase {
-  invoke: (id: string) => Promise<boolean>;
+  invoke: (id: number) => Promise<boolean>;
 }
 
 export class ToggleCheckTodo implements ToggleCheckTodoUseCase {
@@ -10,7 +10,7 @@ export class ToggleCheckTodo implements ToggleCheckTodoUseCase {
     this.todoRepo = _todoRepo;
   }
 
-  async invoke(id: string) {
+  async invoke(id: number) {
     return this.todoRepo.markAsRead(id);
   }
 }

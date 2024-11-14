@@ -41,7 +41,7 @@ export default function TodoListViewModel() {
     }
   }
 
-  async function toggleRead(id: string) {
+  async function toggleRead(id: number) {
     const createdTodo = await toggleCheckTodoUseCase.invoke(id);
     setTodos((prev) => [
       ...prev.map((i) => {
@@ -55,7 +55,7 @@ export default function TodoListViewModel() {
     ]);
   }
 
-  async function removeTodo(id: string) {
+  async function removeTodo(id: number) {
     const isRemoved = await removeTodosUseCase.invoke(id);
     if (isRemoved) {
       setTodos((prev) => {

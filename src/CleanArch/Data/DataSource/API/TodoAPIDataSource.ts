@@ -3,6 +3,8 @@ import TodoDataSource from "../TodoDataSource";
 import { TodoAPIEntity } from "./Entity/TodoAPIEntity";
 import localDB from "./LocalDB";
 
+let idGenerator = 0;
+
 export default class TodoAPIDataSourceImpl implements TodoDataSource {
   db = localDB<TodoAPIEntity>("todos");
   
@@ -18,7 +20,7 @@ export default class TodoAPIDataSourceImpl implements TodoDataSource {
   
   async createTodo(value: string) {
     const res: Todo = {
-      id: new Date().getSeconds().toString(),
+      id: idGenerator++,
       isComplete: false,
       title: value,
     };
@@ -31,12 +33,12 @@ export default class TodoAPIDataSourceImpl implements TodoDataSource {
     return res;
   }
 
-  async toggleTodoCheck(id: string) {
+  async toggleTodoCheck(id: number) {
     const item = this.db.updateByField(id, "is_completed", "toggle");
     return item.is_completed;
   }
 
-  async removeTodo(id: string) {
+  async removeTodo(id: number) {
     return this.db.removeById(id);
   }
 }
