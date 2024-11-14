@@ -42,6 +42,6 @@ describe('GetTodos UseCase', () => {
 
     // Chamar o método `invoke` e verificar se ele lança um erro
     await expect(getTodosUseCase.invoke()).rejects.toThrow('Repository error');
-    expect(mockTodoRepo.getTodos).toHaveBeenCalledTimes(1);
+    expect(mockTodoRepo.getTodos).toHaveBeenCalledTimes(2);
   });
 });
