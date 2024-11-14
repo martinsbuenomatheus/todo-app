@@ -3,6 +3,7 @@ import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import DATA from "./Data";
 
 const FILTER_MAP = {
   All: () => true,
@@ -12,8 +13,8 @@ const FILTER_MAP = {
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-function App(props) {
-  const [tasks, setTasks] = useState(props.tasks);
+function App() {
+  const [tasks, setTasks] = useState(DATA);
   const [filter, setFilter] = useState("All");
 
   function addTask(name) {

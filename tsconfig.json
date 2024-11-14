@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src", // Optional: if you're using absolute imports
+    "paths": {
+      "*": ["*"] // Match all modules
+    },
+    "jsx": "react" // Ensure JSX is supported
+  }
+}
