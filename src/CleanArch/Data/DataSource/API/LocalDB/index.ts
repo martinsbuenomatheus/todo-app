@@ -78,7 +78,6 @@ function db<T>(table: string) {
         return false;
       },
       create<T>(params: T) {},
-      // update(id: string, newModel: Todo): Promise<Todo>
       updateByField(columnId: string, field: any, newValue: any) {
         return {} as T;
       },

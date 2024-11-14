@@ -12,10 +12,11 @@ export class CreateTodo implements CreateTodosUseCase {
   }
 
   async invoke(value: string) {
-    if (value.length < 2) {
-      throw new Error(
-        "Your todo should have at leat 2 characters."
-      );
+    if (value.length <= 0) {
+      throw new Error("Título é obrigatório.");
+    }
+    else if(value.length > 500){
+      throw new Error("Máximo 500 caracteres.");
     }
     const created = this.todoRepo.createTodo(value);
     return created;
